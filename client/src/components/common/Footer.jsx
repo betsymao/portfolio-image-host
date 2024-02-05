@@ -8,7 +8,7 @@ function Footer({ date }) {
           <div className="footer--container">
               <p className="footer__body">
                   &copy; {date} Clik.
-                  Example project by <Link to="/">Betsy</Link>.
+                  Example project by <Link to="/" className="footer__link">Betsy</Link>.
               </p>
           </div>
       </footer>

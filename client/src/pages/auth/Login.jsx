@@ -1,7 +1,44 @@
 // libraries
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+// services
+import authService from '../../services/authService';
+
+// hooks
+import useAuth from '../../hooks/useAuth';
 
 function Login() {
+    
+    const { loginSaveUser } = useAuth();
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState({
+        email: '',
+        password: '',
+    });
+    const [loading, setLoading] = useState(false);
+
+    const { email, password } = user;
+
+    const handleTextChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value })
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+    
+        try {
+          const response = await authService.login(user);
+          loginSaveUser(response.data);
+          navigate('/');
+        } catch (err) {
+          console.log(err?.response);
+          setTimeout(() => {setLoading(false)}, 1000);
+        }
+    };
+
     return (
         <>
             <div className="root__content--grid root__content--margin">
@@ -15,7 +52,7 @@ function Login() {
                     </div>
 
                     {/* form document */}
-                    <form className="card__form">
+                    <form className="card__form" onSubmit={ handleSubmit }>
 
                         {/* email */}
                         <div className="formGroup">
@@ -27,6 +64,8 @@ function Login() {
                             placeholder="e.g. john@email.com" 
                             type="email" 
                             name="email"
+                            value={email} 
+                            onChange={ handleTextChange }
                             required />
                         </div>
 
@@ -40,16 +79,20 @@ function Login() {
                             placeholder="********" 
                             type="password"
                             name="password"
+                            value={password} 
+                            onChange={ handleTextChange }
                             required />
                         </div>
 
-                        <button className="formBtn">Login</button>
+                        <button className="formBtn">
+                            { loading ? '...' : 'Login'}
+                        </button>
 
                     </form>
 
                     {/* footer */}
                     <div className="card__footer">
-                        <p className="card__subtext">Don't have an account? <Link to="/register">Register</Link> as a new user.</p>
+                        <p className="card__subtext">Don't have an account? <Link to="/register" className="card__link">Register</Link> as a new user.</p>
                     </div>
 
                 </div>

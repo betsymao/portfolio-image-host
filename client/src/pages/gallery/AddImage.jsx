@@ -1,10 +1,55 @@
-// assets
-import Logo from '../../assets/logo.svg';
+// libraries
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// services
+import uploadService from '../../services/uploadService';
 
 function AddImage() {
+
+  const navigate = useNavigate();
+  const [uploadData, setUploadData] = useState({
+    title: '',
+    category: '',
+    image: '',
+  });
+  const [loading, setLoading] = useState(false);
+
+  const { title, category } = uploadData;
+
+  const handleTextChange = (e) => {
+    const { title, value } = e.target;
+    setUploadData({ ...uploadData, title: value });
+  };
+
+  const handleCategoryChange = (e) => {
+    const { category, value } = e.target;
+    setUploadData({ ...uploadData, category: value });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setUploadData({ ...uploadData, image: file });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();      
+    setLoading(true);
+
+    try {
+      const response = await uploadService.post(uploadData);
+      console.log(response);
+      navigate('/');
+
+    } catch (err) {
+      console.log(err?.response);
+      window.scroll({top: 0, left: 0, behavior: 'smooth' });
+      setTimeout(() => {setLoading(false)}, 1000);
+    }
+  };
+
   return (
     <>
-      {/* add/upload image form page */}
       <div className="root__content--justify root__content--align">
 
         <div className="card">
@@ -21,22 +66,57 @@ function AddImage() {
           </div>
 
           {/* form document */}
-          <form className="card__form">
+          <form className="card__form" onSubmit={ handleSubmit }>
+
+              {/* title */}
+              <div className="formGroup">
+                <label className="formLabel">
+                  Title:
+                </label>
+                <input 
+                className="formInput"
+                type="text" 
+                placeholder=" e.g. Cat in a box"
+                name="title"
+                value={title}
+                onChange={ handleTextChange }
+                required />
+              </div>
+
+              {/* category */}
+              <div className="formGroup">
+                <label className="formLabel">
+                  Category:
+                </label>
+                <select 
+                className="formInput"
+                name="category"
+                value={category}
+                onChange={ handleCategoryChange }>
+                  <option value="">--Please choose a category--</option>
+                  <option value="animals">Animals</option>
+                  <option value="nature">Nature</option>
+                  <option value="food">Food</option>
+                  <option value="city">City</option>
+                  <option value="people">People</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
 
               {/* file */}
               <div className="formGroup">
                   <label className="formLabel">
-                  File:
+                    File:
                   </label>
                   <input 
-                  className="formInput"
-                  placeholder="e.g. john@email.com" 
-                  type="email" 
-                  name="email"
+                  type="file" 
+                  onChange={ handleFileChange }
                   required />
               </div>
 
-              <button className="formBtn">Upload</button>
+              <button className="formBtn">
+                { loading ? '...' : 'Upload'}
+              </button>
 
           </form>
         </div>

@@ -6,6 +6,7 @@ import {
 
 // components
 import Layout from './components/layout/Layout';
+import PrivateRoutes from './components/layout/PrivateRoutes';
 
 // pages
 import Home from './pages/Home';
@@ -30,9 +31,12 @@ function App() {
           <Route path='/login' element={<Login />} />
 
           {/* gallery pages */}
-          <Route path='/upload' element={<AddImage />} />
-          <Route path='/edit/:id' element={<EditImage />} />
           <Route path='/image/:id' element={<ImageDetails />} />
+            {/* protected gallery pages */}
+            <Route element={<PrivateRoutes />}>
+              <Route path='/upload' element={<AddImage />} />
+              <Route path='/edit/id' element={<EditImage />} />
+            </Route>
 
         </Route>
       </Routes>

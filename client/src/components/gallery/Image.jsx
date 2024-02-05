@@ -1,8 +1,14 @@
-function Image() {
+// libraries
+import { Link } from 'react-router-dom';
+
+function Image(props) {
     return (
       <>
-        {/* collection item > collection img */}
-        <p className="gallery__collection--item">img</p>
+        <div className="gallery__collection--item">
+          <Link to={`/images/${props.id}`}>
+            <img src={props.image} alt={props.title} />
+          </Link>
+        </div>
       </>
     );
   }
