@@ -28,4 +28,3 @@ function ImageList({ uploads }) {
 }
   
 export default ImageList;
-  
