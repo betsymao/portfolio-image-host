@@ -13,7 +13,6 @@ import Home from './pages/Home';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import AddImage from './pages/gallery/AddImage';
-import EditImage from './pages/gallery/EditImage';
 import ImageDetails from './pages/gallery/ImageDetails';
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
             {/* protected gallery pages */}
             <Route element={<PrivateRoutes />}>
               <Route path='/upload' element={<AddImage />} />
-              <Route path='/edit/id' element={<EditImage />} />
             </Route>
 
         </Route>
