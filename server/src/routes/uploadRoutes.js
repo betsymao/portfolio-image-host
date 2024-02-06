@@ -1,45 +1,46 @@
 const express = require('express'); 
 const router = express.Router();
 
-const GalleryPolicy = require('../policies/galleryPolicy');
+const UploadPolicy = require('../policies/uploadPolicy');
 const FilePolicy = require('../policies/filePolicy');
 const VerifyAuth = require('../middleware/verifyAuth');
 const fileServerUpload = require('../middleware/fileServerUpload');
-const GalleryController = require('../controllers/galleryController');
+const UploadController = require('../controllers/uploadController');
 
 module.exports = () => {
   // get all images
   router.get('/', 
-    GalleryController.getAllImages
+    UploadController.getAllImages
   );
 
   // upload image
   router.post('/', [
     VerifyAuth.auth,
-    GalleryPolicy.validateImage,
+    UploadPolicy.validateImage,
     FilePolicy.filePayloadExists,
     FilePolicy.fileSizeLimiter,
     FilePolicy.fileExtLimiter(['.png', '.jpg', '.jpeg']),
     fileServerUpload,
   ],
-    GalleryController.uploadImage,
+    UploadController.uploadImage,
   );
 
   // get image by id
   router.get('/:id',
-    GalleryController.getImage,
+    UploadController.getImage,
   );
 
   // update image by id
   router.put('/:id', [
     VerifyAuth.auth,
-    GalleryPolicy.validateImage,
+    VerifyAuth.admin,
+    UploadPolicy.validateImage,
     FilePolicy.filePayloadExists,
     FilePolicy.fileSizeLimiter,
     FilePolicy.fileExtLimiter(['.png', '.jpg', '.jpeg']),
     fileServerUpload,
   ],
-    GalleryController.updateImage,
+    UploadController.updateImage,
   );
 
   // delete image by id
@@ -47,7 +48,7 @@ module.exports = () => {
     VerifyAuth.auth,
     VerifyAuth.admin,
   ],
-    GalleryController.deleteImage,
+    UploadController.deleteImage,
   );
 
   return router;

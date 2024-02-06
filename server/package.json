@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index",
-    "prod": "node src/index"
+    "dev": "set DEBUG=app* & nodemon src/index",
+    "prod": "node src/index",
+    "preview": "set DEBUG=app:* node src/index"
   },
   "keywords": [],
   "author": "",

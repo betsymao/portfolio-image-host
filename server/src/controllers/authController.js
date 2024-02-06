@@ -65,12 +65,12 @@ module.exports = {
 
       const userMatch = await findUser(email);
       if (userMatch.length === 0) {
-        return next(ApiError.badRequest('The credentials entered are not correct (DEBUG: email).'));
+        return next(ApiError.badRequest('The credentials entered are not correct.'));
       }
 
       const passwordMatch = await comparePassword(userMatch, password);
       if (!passwordMatch) {
-        return next(ApiError.badRequest('The credentials entered are not correct (DEBUG: pwd).'));
+        return next(ApiError.badRequest('The credentials entered are not correct.'));
       }
 
       console.log(`User has successfully logged in: ${userMatch[0].id}`);

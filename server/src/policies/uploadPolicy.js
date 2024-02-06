@@ -3,12 +3,11 @@ const ApiError = require('../utilities/ApiError');
 const debugJoi = require('debug')('app:joi');
 
 module.exports = {
-  validateProduct(req, res, next) {
+  validateImage(req, res, next) {
     debugJoi(req.body);
     const schema = Joi.object({
       title: Joi.string().min(3).max(50).required(),
       category: Joi.string(),
-      description: Joi.string().min(3).max(2000).required(),
       image: Joi.any(),
       uploadedFile: Joi.string(),
     });
@@ -24,10 +23,6 @@ module.exports = {
 
         case 'category':
           next(ApiError.badRequest('You must provide a valid category for the image.'));
-          break;
-
-        case 'description':
-          next(ApiError.badRequest('You must provide a valid description.'));
           break;
 
         case 'image':

@@ -20,7 +20,6 @@ module.exports = {
           id: doc.id,
           title: doc.data().title,
           category: doc.data().category,
-          description: doc.data().description,
           image: doc.data().image,
         })
       });
@@ -50,8 +49,7 @@ module.exports = {
       const response = await imageRef.add({
         title: req.body.title,
         category: req.body.category,
-        description: req.body.description,
-        image: downloadURL
+        image: downloadURL,
       });
       console.log(`Added image ID: ${response.id}`);
       res.send(response.id);
@@ -110,7 +108,6 @@ module.exports = {
       const response = await imageRef.update({
         title: req.body.title,
         category: req.body.category,
-        description: req.body.description,
         image: downloadURL,
       });
       res.send(response);
@@ -135,7 +132,7 @@ module.exports = {
       const bucketResponse = await deleteFileFromBucket(uploadedFile);
 
       if (bucketResponse) {
-        const response = await imageRef.delete({ exists:true });
+        const response = await imageRef.delete({ exists: true });
 
         res.send(response);
       }
