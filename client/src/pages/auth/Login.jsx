@@ -1,6 +1,7 @@
 // libraries
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // services
 import authService from '../../services/authService';
@@ -34,7 +35,7 @@ function Login() {
           loginSaveUser(response.data);
           navigate('/');
         } catch (err) {
-          console.log(err?.response);
+          toast.error(`${err.response.data}`);
           setTimeout(() => {setLoading(false)}, 1000);
         }
     };

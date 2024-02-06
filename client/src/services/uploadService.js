@@ -1,33 +1,33 @@
 import api from './api';
 
 function getAll() {
-  return api.get('/api/images');
+  return api.get('/api/uploads');
 }
 
 function post(data) {
   const formData = prepareFormData(data);
   return api.post(
-    '/api/images', 
+    '/api/uploads', 
     formData,
     formConfig,
   );
 }
 
 function getById(id) {
-  return api.get('/api/images/' + id);
+  return api.get('/api/uploads/' + id);
 }
 
 function put(id, data, uploadedfile) {
   const formData = prepareFormData(data, uploadedfile);
   return api.put(
-    '/api/images/' + id, 
+    '/api/uploads/' + id, 
     formData, 
     formConfig,
   );
 }
 
 function del(id) {
-  return api.delete('/api/images/' + id);
+  return api.delete('/api/uploads/' + id);
 }
 
 
@@ -42,7 +42,6 @@ function prepareFormData(data, uploadedfile) {
 
   formData.append('title', data.title);
   formData.append('category', data.category);
-  formData.append('description', data.description);
   formData.append('image', data.image);
 
   if (uploadedfile) {

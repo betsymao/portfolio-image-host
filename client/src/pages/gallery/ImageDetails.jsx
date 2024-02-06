@@ -1,6 +1,6 @@
 // libraries
 import { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 // services
 import uploadService from '../../services/uploadService';
@@ -14,7 +14,8 @@ function ImageDetails() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [uploadData, setuploadData] = useState({
+  const [uploadData, setUploadData] = useState({
+    id: params.id,
     title: '',
     category: '',
     image: '',
@@ -52,28 +53,9 @@ function ImageDetails() {
     }
   }
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      
-      const response = await uploadService.del(id);
-      console.log(response);
-
-      setLoading(false);
-      navigate('/');
-      
-    } catch (err) {
-      console.log(err?.response);
-      setError(true);
-      window.scroll({top: 0, left: 0, behavior: 'smooth' });
-    }
-  }
-
   if (error) {
     return (
-        <p>Error.</p>
+      <p>{error} Error</p>
     );
   }
 
@@ -85,20 +67,15 @@ function ImageDetails() {
 
   return (
     <>
-      {/* individual image page with details */}
-      {/* title */}
-      <img src={image} alt={title} />
-
-      {user && 
-      <div>
-        <Link to={`/images/edit/${id}`}>Edit</Link>
-        <button onClick={handleDelete}>
-          {loading ? '...' : 'Delete'}
-        </button>
-      </div>}
+      <div className="root__content--justify root__content--align root__content--margin">
+        <div className="content--flex">
+          <p className="image__subtitle">{title}</p>
+          <p className="image__category">Category: {category}</p>
+        </div>
+        <img src={image} alt={title} className="image__upload" />
+      </div>
     </>
   );
 }
 
 export default ImageDetails;
-  

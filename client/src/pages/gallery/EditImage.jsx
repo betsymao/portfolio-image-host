@@ -14,6 +14,7 @@ function EditImage() {
   const navigate = useNavigate();
 
   const [uploadData, setUploadData] = useState({
+    id: params.id,
     title: '',
     category: '',
     image: '',
@@ -106,7 +107,7 @@ function EditImage() {
 
   return (
     <>
-      <div className="root__content--justify root__content--align">
+      <div className="root__content--justify root__content--align root__content--margin">
 
         <div className="card">
         

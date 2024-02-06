@@ -1,6 +1,7 @@
 // libraries
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // services
 import uploadService from '../../services/uploadService';
@@ -42,7 +43,7 @@ function AddImage() {
       navigate('/');
 
     } catch (err) {
-      console.log(err?.response);
+      toast.error(`${err.response.data}`);
       window.scroll({top: 0, left: 0, behavior: 'smooth' });
       setTimeout(() => {setLoading(false)}, 1000);
     }
