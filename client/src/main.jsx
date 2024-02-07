@@ -1,12 +1,14 @@
+// libraries
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom'; 
 import { AuthProvider } from './contexts/AuthContext';
 
+// application
 import App from './App.jsx';
 
-import './styles/reset.css';
-import './index.css';
+// styles
+import './main.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

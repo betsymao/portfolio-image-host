@@ -1,0 +1,312 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  5. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+
+/*
+  7. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  8. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background: #F1F1F2;
+  color: #2E2D48;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+}
+
+h2 {
+  font-family: "Assistant", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #2E2D48;
+}
+
+/* gallery collection of images */
+.gallery {
+  width: 95%;
+  margin: auto;
+}
+
+.gallery__collection {
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* gallery collection image */
+.gallery__collection--img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image__subtitle {
+  font-weight: 700;
+  padding: 0.5rem 2rem;
+  background: #ffffff;
+  border: 1px solid #9A9194;
+  display: inline-block;
+  margin-right: 0.25rem;
+}
+
+.image__category {
+  padding: 0.5rem 2rem;
+  background: #ffffff;
+  color: #9A9194;
+  border: 1px solid #9A9194;
+  display: inline-block;
+}
+
+.image__upload {
+  margin-top: 0.5rem;
+  border-top: 0.25rem solid #2E2D48;
+  padding-top: 0.5rem;
+}
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid #9A9194;
+  padding-block: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.card__header {
+  margin-inline: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card__title {
+  border-bottom: 0.25rem solid #BC5276;
+}
+
+.card__list {
+  padding: 0;
+}
+
+.card__list--item {
+  list-style-type: none;
+}
+
+.card__footer {
+  margin-inline: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.card__link {
+  font-weight: 700;
+}
+
+.card__link:hover {
+  color: #BC5276;
+}
+
+.form__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid #9A9194;
+}
+
+.card__form {
+  margin-inline: 2.5rem;
+}
+
+.formGroup {
+  padding-bottom: 1rem;
+}
+
+.formLabel {
+  display: block;
+  padding-bottom: 0.25rem;
+  font-weight: 700;
+}
+
+.formInput {
+  display: block;
+  padding: 0.35rem;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #9A9194;
+}
+
+.formBtn {
+  width: 100%;
+  padding: 0.65rem 1.45rem;
+  background: #2E2D48;
+  border-radius: 6px;
+  color: #F1F1F2;
+  cursor: pointer;
+}
+
+header {
+  margin-bottom: 0.5rem;
+  background: #FFFFFF;
+  border-bottom: 1px solid #9A9194;
+  align-self: start;
+}
+
+.header--container {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  padding-block: 0.75rem;
+  margin-left: -0.85rem;
+}
+
+.nav__list {
+  padding: 0;
+  display: flex;
+}
+
+.nav__list--item {
+  list-style-type: none;
+  padding: 0.65rem 1.45rem;
+  margin-left: 0.5rem;
+  background: #2E2D48;
+  border-radius: 6px;
+}
+
+.nav__list--link {
+  color: #F1F1F2;
+}
+
+.headerBtn {
+  background: #2E2D48;
+  color: #F1F1F2;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.65rem 1.45rem;
+  border-style: none;
+  margin-left: 0.5rem;
+}
+
+.username {
+  padding: 0.65rem 1.45rem;
+  font-weight: 700;
+}
+
+.footer--container {
+  border-top: 1px solid #9A9194;
+  padding: 3rem 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.footer__body {
+  text-align: center;
+}
+
+.footer__link {
+  color: #BC5276;
+  font-weight: 700;
+}
+
+.footer__link:hover {
+  color: #2E2D48;
+}
+
+.root__container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* center content y-axis */
+.root__content--align {
+  align-self: center;
+}
+
+/* center content x-axis  */
+.root__content--justify {
+  justify-self: center;
+}
+
+.root__content--margin {
+  width: 95%;
+  justify-self: center;
+}
+
+.root__content--grid {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.5rem;
+}
+
+.content--flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .root__content--grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gallery__collection {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  header {
+    margin-bottom: 6rem;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+  .footer--container {
+    margin-top: 6rem;
+  }
+}

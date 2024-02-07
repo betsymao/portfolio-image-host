@@ -1,0 +1,14 @@
+@use './base/reset';
+@use './base/base';
+
+@use './components/gallery';
+@use './components/card';
+@use './components/form';
+
+@use './layout/header';
+@use './layout/footer';
+@use './layout/layout';
+
+@use './abstracts/media-query';
+
+

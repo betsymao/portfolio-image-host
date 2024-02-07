@@ -1,0 +1,21 @@
+@media (min-width: 768px){
+    .root__content--grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery__collection {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+     }
+
+    header {
+        margin-bottom: 6rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .footer--container {
+        margin-top: 6rem;
+    }
+}
