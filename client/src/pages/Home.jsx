@@ -16,13 +16,11 @@ function Home() {
 
   const effectRan = useRef(false);
   useEffect(() => {
-    console.log('Effect ran.');
     if (effectRan.current === false) {
       fetchUploads();
       setLoading(false);
 
       return () => {
-        console.log('Unmounted.');
         effectRan.current = true;
       }
     }
@@ -33,12 +31,9 @@ function Home() {
       const response = await uploadService.getAll();
 
       const data = await response.data;
-
-      console.log(data);
       setData(data);
 
     } catch(err) {
-      console.log(err?.response);
       setError(true); 
     }
   }

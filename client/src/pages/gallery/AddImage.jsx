@@ -39,7 +39,6 @@ function AddImage() {
 
     try {
       const response = await uploadService.post(uploadData);
-      console.log(response);
       navigate('/');
 
     } catch (err) {

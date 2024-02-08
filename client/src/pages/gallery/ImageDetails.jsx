@@ -1,16 +1,12 @@
 // libraries
 import { useState, useEffect, useRef } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 // services
 import uploadService from '../../services/uploadService';
 
-// hooks
-import useAuth from '../../hooks/useAuth';
-
 function ImageDetails() {
 
-  const { user } = useAuth();
   const params = useParams();
   const navigate = useNavigate();
 
@@ -27,13 +23,11 @@ function ImageDetails() {
 
   const effectRan = useRef(false);
   useEffect(() => {
-    console.log("Effect Ran");
     if (effectRan.current === false) {
       fetchUpload ();
       setLoading(false);
 
       return () => {
-        console.log('Unmounted.');
         effectRan.current = true;
       }
     }
@@ -43,19 +37,18 @@ function ImageDetails() {
     try {
       const response = await uploadService.getById(id);
       const fetchedUpload = await response.data
-      console.log(fetchedUpload);
 
       setUploadData(uploadOnMount => ({...uploadOnMount,...fetchedUpload}));
 
     } catch (err) {
-      console.log(err?.response);
+      toast.error(`${err.response.data}`);
       setError(true);
     }
   }
 
   if (error) {
     return (
-      <p>{error} Error</p>
+      <p>Error</p>
     );
   }
 

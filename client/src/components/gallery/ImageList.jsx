@@ -7,10 +7,7 @@ function ImageList({ uploads }) {
   return (
     <>
     <div className="gallery">
-      {/* gallery nav - all images, is popular boolean, oldest, newest*/}
-      {/* <p>gallery nav</p> */}
-
-      {/* render gallery collection */}
+      {/* gallery nav - all images, by category*/}
       <div className="gallery__collection">
         {uploads.length > 0 && uploads.map(upload => 
           <Image 
