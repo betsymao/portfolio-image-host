@@ -16,7 +16,7 @@ const debugStartup = require('debug')('app:startup');
 const app = express();
 
 app.use(helmet());
-app.use(cors("*"));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 debugStartup('Parsing middleware enabled on all routes.');
