@@ -127,6 +127,12 @@ a {
 
 .card__title {
   border-bottom: 0.25rem solid #BC5276;
+  margin-bottom: 0.25rem;
+}
+
+.card__text {
+  margin-top: 3rem;
+  color: red;
 }
 
 .card__list {
@@ -310,5 +316,3 @@ header {
     margin-top: 6rem;
   }
 }
-
-/*# sourceMappingURL=main.css.map */
